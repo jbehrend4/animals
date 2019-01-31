@@ -56,12 +56,12 @@ public class animalInput {
     }
     
     public Student student() {
-        System.out.println("Student's name: ");
+        System.out.print("Student's name: ");
         String sName = keyboard.nextLine();
         int studentAge = 8500000;
         do {
             try {
-                System.out.println("Student's age: ");
+                System.out.print("Student's age: ");
                 String sAge = keyboard.nextLine(); 
                 studentAge = Integer.parseInt(sAge);
             }
