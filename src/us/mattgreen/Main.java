@@ -1,6 +1,7 @@
 package us.mattgreen;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
 
@@ -13,12 +14,40 @@ public class Main {
 
     public Main() {
         ArrayList<Talkable> zoo = new ArrayList<>();
+        Scanner keyboard = new Scanner (System.in);
 
-        // Lines to Replace
-        zoo.add(new Dog(true, "Pete"));
-        zoo.add(new Cat(9, "Anne Belly"));
-        zoo.add(new Student(19, "Joe John Johnson"));
-        // End Lines to Replace
+        boolean validChoice = false;
+        String choice = "";
+        while (validChoice == false) {
+          try {
+            System.out.print("Would you like to add a dog, cat, or student: ");
+            choice = keyboard.nextLine();
+          }
+          catch (Exception e) {
+              System.out.println("That y was not a valid entry.");
+          }
+          finally {
+              if (choice.equalsIgnoreCase("cat") || choice.equalsIgnoreCase("dog") || choice.equalsIgnoreCase("student")) {
+                  validChoice = true;
+              }
+              else {
+                  System.out.println("That was not a valid entry.");
+              }   
+          }           
+        }
+
+        animalInput input = new animalInput(choice);
+        if (choice.equalsIgnoreCase("dog"))
+        {
+            zoo.add(input.dog());
+        }
+        else if (choice.equalsIgnoreCase("cat")) {
+            zoo.add(input.cat());
+            
+        }
+        else if (choice.equalsIgnoreCase("student")) {
+            zoo.add(input.student());
+        }        
 
         for (Talkable thing : zoo) {
             printOut(thing);
